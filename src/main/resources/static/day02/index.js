@@ -23,7 +23,7 @@ async function boardFindAll(){
         // ` 백틱이란? 문자열과 문자열 사이에 ${} 이용하여 변수 대입가능
         html += `<tr>
                     <td> ${게시물객체.no} </td> <td> ${게시물객체.writer} </td> <td> ${게시물객체.content} </td>
-                    <td> <button>수정</button> <button>삭제 </button> </td > 
+                    <td> <button onClick="boardUpdate(${게시물객체.no})">수정</button> <button onClick="boardDelete(${게시물객체.no})">삭제 </button> </td > 
                 </tr>`
     }
 
@@ -31,3 +31,36 @@ async function boardFindAll(){
     tbody.innerHTML = html;  
 }
 boardFindAll(); // * HTML(JS포함) 열릴 때 최초 1번 실행
+
+// [2] 등록
+async function boardSave() {  // 동기화 함수 async
+    // 1. 입력받은 값 가져오기
+    const content = document.querySelector('.content').value;
+    const writer = document.querySelector('.writer').value;
+    // 2. 저장 : axios 이용하여 백엔드에게 저장 요청하고 응답받기
+    // await axios.http메소드("주소") , 도메인 생력가능
+    const response = await axios.post(`/board/save?content=${content}&writer=${writer}`);
+    console.log(response); // 반환 타입을 boolean 설정해 놓ㅇㅁ
+
+    // 3. 결과출력
+    if(response){alert('저장성공'); boardFindAll(); } // 성공하면 새로고침
+    else{alert('저장 실패');}
+}
+
+// [3] 수정 <button onClick="boardUpdate(${게시물객체.no})">수정 
+async function  boardUpdate(no) {
+    // 1. 수정할 내용 입력받기 prompt
+    const content = prompt("수정 내용: ");
+    // 2. 수정처리 : axios 이용하여 백엔드에게 수정 요청/응답
+    const response = await axios.put(`/board/update?no=${no}&content=${content}`);
+    // 3. 결과
+    if(response){alert('수정 성공'); boardFindAll();}
+    else{alert('수정 실패');}
+}
+
+// [4] 삭제 <button onClick="boardDelete(${게시물객체.no})">삭제
+async function  boardDelete(no) {
+    const response = await axios.delete(`/board/delete?no=${no}`);
+    if(response){alert('삭제 성공'); boardFindAll();}
+    else{alert('삭제 실패');}
+}
