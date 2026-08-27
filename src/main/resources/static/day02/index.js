@@ -61,6 +61,7 @@ async function  boardUpdate(no) {
 // [4] 삭제 <button onClick="boardDelete(${게시물객체.no})">삭제
 async function  boardDelete(no) {
     const response = await axios.delete(`/board/delete?no=${no}`);  // "" 쓸거면 마지막에 +매개변수 
+    console.log(response.data) // true 나옴 , 차이가 있나 
     if(response){alert('삭제 성공'); boardFindAll();}
     else{alert('삭제 실패');}
 }
