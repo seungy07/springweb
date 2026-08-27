@@ -62,6 +62,11 @@ async function  boardUpdate(no) {
 async function  boardDelete(no) {
     const response = await axios.delete(`/board/delete?no=${no}`);  // "" 쓸거면 마지막에 +매개변수 
     console.log(response.data) // true 나옴 , 차이가 있나 
-    if(response){alert('삭제 성공'); boardFindAll();}
+    if(response.data ){alert('삭제 성공'); boardFindAll();}
     else{alert('삭제 실패');}
+    /* // response =  { header:~~ , data:~~ , config: ~~ } // data:통신결과데이터 
+        response.data = true;
+        JS는 값이 있으면 true로 봄, 1도 true.
+        그래서 if()문 조건 확인시 정확하게는 .data를 붙여서 확인이필요
+    */
 }
