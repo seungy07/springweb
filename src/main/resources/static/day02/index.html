@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Page Title</title>
+    <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+    <!-- 스프링서버 실행 후 : http://127.0.0.1:8080/day02/index.html -->
+    <h3> 스프링(톰캣) 서버에서 실행된 HTML </h3>
+    <div> <!-- 레이아웃(구역) 마크업 --> 
+        내용: <input type="text" class="content" /> <br />
+        작성자: <input type="text" class="writer" /> <br />
+        <button onclick="boardSave()" >버튼도 이름이 있어요</button> <!-- 클릭 가능한 상자 -->
+    </div> <!-- 라이브 서버는(5500)포트번호 및 경로가 다름 -->
+    <div>
+        <table border="1"> <!-- 테이블 -->
+            <thead> <!-- 제목구역 -->
+                <tr> <!-- 행 -->
+                    <th> 번호 </th> <th> 작성자 </th> <th> 내용 </th> <th> 비고 </th> <!-- 제목 셀 -->
+                </tr>
+            </thead>
+            <tbody class="boardList"> <!-- 본문 구역 -->
+                <tr>
+                    <td> 1 </td> <td> 유재석 </td> <td> 안녕하세요 </td>
+                    <td> <button>수정</button> <button>삭제 </button> </td > <!-- 테이터셀(한칸) -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
+<!--
+    스프링 프로젝트내
+    src -> main -> java -> 동적서버 / 자바파일( controller 등) = 서블릿 (동적서버/웹컨테이너)
+        src -> main -> java -> example -> day02 -> BoardController -> @GetMapping("/board/findAll")
+        통신경로 : http://127.0.0.1:8080/board/findAll
+
+    src -> main -> resources -> static( html / css / js 등) -> 정적서버 /웹서버
+        src -> main -> resources -> static -> day02 -> index.html 파일 생성
+        통신경로 : http://127.0.0.1:8080/day02/index.html
+
+    통합 브라우저(로컬)에서 실행  라이브5500 서버로 확인후, 최종적 스프링 통신 및 테스트는 스프링8080 이용
+-->
+        

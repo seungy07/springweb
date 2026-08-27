@@ -1,0 +1,16 @@
+1. @SpringBootApplication  : Spring 실행할 때 Spring에 필요한 기본세팅( 1. 내장톰캣지원  2.서블릿자동등록)
+2. @RestController  : Spring에서는 서블릿을 상속이 아닌 @Controller 어노테이션으로 지원 (HTTP) + RestController(HTTP content-type 자동으로 application / json 세팅)
+3. @PostMapping("board/save") : 만일 HTTP 요청이 POST이면 해당 메소드로 연결 + URL (중복없이) 만들기
+4. @GetMapping("board/findAll") : 만일 HTTP 요청이 GET이면 해당 메소드로 연결 + URL (중복없이) 만들기
+5. @PutMapping("board/update")  :만일 HTTP 요청이 PUT이면 해당 메소드로 연결 + URL (중복없이) 만들기
+6. @DeleteMapping("board/delete")  :만일 HTTP 요청이 Delete이면 해당 메소드로 연결  + URL (중복없이) 만들기
+
+* HTTP 테스트는 TalendAPI / Postman 에서 진행
+
+[ 의존성 추가 ]
+https://start.spring.io/  
+
+크롬에서 테스트 도구
+Talend API
+
+
