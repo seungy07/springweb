@@ -43,3 +43,14 @@ axios : 비동기 통신을 기본값으로 제공하는 HTTP 기반의 통신 �
 3) 복합 어노테이션
 @Data: @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor를 한 번에 묶어서 제공하는 강력한 종합 선물세트 어노테이션.
 
+[IOC / DI ]
+@Component   // 싱글톤 생략 -> @Component 이용하여 IOC(자동객체관리) 규칙으로 스프링 컨테이너에 자동 빈(객체) 등록
+@Autowired // 의존성 주입, 스프링 컨테이너에 등록된 빈(객체) 가져와서 대입 (사용할 때) , 대신 밑 방법 권장
+class SampleController4{
+    // 2. 권장  
+    private final SampleDao3 dao3;
+    public SampleController4( SampleDao3 dao3){
+        this.dao3 = dao3;
+    }
+    void method(){}
+}
