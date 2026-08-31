@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,9 +59,32 @@ public class RestController2 {
         System.out.println(examDto);
         return 9;
     }
-    
-    
-
-    
-    
+    // 6.
+    @GetMapping("/task10/{name}/{age}")
+    public int task10( @PathVariable(name="name") String name, @PathVariable( name ="age") int age ){
+        System.out.println(name); System.out.println(age);
+        return 10;
+    }
+    // 7.
+    @PostMapping("/task11")
+    public int task11( @RequestBody ExamDto examDto ){
+        System.out.println( examDto );
+        return 11;
+    }
 }
+/*
+    요청 Request  -----> 
+                HTTP
+                <----- 응답 Response
+    * HTTP content-type  : 전송하는 데이터의 타입 뜻
+    쿼리스트링이란?     URL?매개변수명=값&매개변수명=값
+        - GET / POST / PUT / DELETE 모두 사용가능
+    [경로구분자]란? URL/값1/값2
+
+    1. @RequestParam  : 쿼리스트링 또는 content-type:'application/x-www-form-urlencoded'
+    2. @ModelAttribute(생략가능) : 쿼리스트링 또는 content-type:'application/x-www-form-urlencoded' (+ DTO 매핑)
+    3. @PathVariable : 경로구분자
+    4. @RequestBody : content-type: 'application/json'
+            -> POST / PUT 메소드만 body(본문) 지원.
+    // 하나는 쿼리, 여러개는 바디
+*/
