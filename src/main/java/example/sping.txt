@@ -54,3 +54,37 @@ class SampleController4{
     }
     void method(){}
 }
+
+[어노테이션 정리]
+[자바]
+1. @Override        : (재정의) 컴파일/실행 중 해당 메소드 사용 방법 명시
+2. @Retention       : 어노테이션 유지 범위  RetentionPolicy.XXX <- 언제실행할건지
+3. @Target          : 해당 어노테이션의 사용처(적용 대상) / ElementType.XXX  <- 사용처 표시
+
+[Lombok]
+1. @NoArgsConstructor   : 기본 생성자 자동 생성
+2. @AllArgsConstructor  : 전체 매개변수(필드) 있는 생성자 (자동) 생성
+3. @Getter              : getter 메서드 자동 생성 
+4. @setter              : setter 메서드 자동 생성
+5. @toString            : toString() 메서드 자동 생성
+6. @RequiredArgsConstructor : final 필드만 포함하는 생성자 자동 생성
+7. @Builder             : 빌더 패턴 방식의 객체 생성 메서드 자동 생성
+
+[스프링]
+1. @SpringBootApplication   : 톰캣 자동구성, 컴포넌트 스캔, 설정 기능을 포함한 시작점 지정
+2. @Component           : 스프링 빈(Bean, 객체) 등록, 싱글톤
+3. @Autowired           : 빈 객체 의존성 자동 주입
+
+[스프링 HTTP]
+1. @Controller          : Spring MVC 컨트롤러 등록
+2. @RestController      : RESTful 웹 서비스 컨트롤러 등록 (@Controller + @ResponseBody)
+3. @ResponseBody        : 반환 객체를 HTTP 응답 본문 (JSON/XML/Text)으로 전송
+4. @RequestMapping      : 클래스 또는 메서드 레벨에서 공통 URI 경로 및 HTTP 속성을 정의
+5. @GetMapping          : HTTP GET 요청 전용 매핑
+6. @PostMapping         : HTTP POST 요청 전용 매핑
+7. @PutMapping         : HTTP PUT 요청 전용 매핑
+8. @DeleteMapping      : HTTP DELETE 요청 전용 매핑
+9. @RequestParam       : 쿼리 스트링 또는 폼 파라미터(application/x-www-form-urlencoded) 값 추출
+10. @ModelAttribute     : 요청 파라미터를 객체(DTO) 필드에 저장
+11. @PathVariable       : url 경로 자체에 포함된 식별자 값 추출 
+12. @RequestBody        : HTTP body(JSON,XML,등 POST/PUT에서 주로 사용) 데이터를 Java 객체로 저장  
