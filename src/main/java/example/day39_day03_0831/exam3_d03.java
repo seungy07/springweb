@@ -62,3 +62,14 @@ class SampleController5{
     private final SampleDao3 dao3;
 
 }
+/*
+    즉] 다른 클래스의 메소드 호출 하기 위해서는 객체 필요.
+    1. [전통] new 클래스명().메소드명();
+    2. [미니프로젝트2] 클래스명.getInstance().메소드명();
+    3. [스프링] @Component 등록,   @Autowired 호출
+    --------------------------
+    @Component 등록되는 시점 :  @SpringBootApplication -> @ComponentScan
+    즉] 스프링이 켜지면서 폴더내 @Componet 다 찾아(같은폴더/하위폴더)내서 스프링 컨테이너 등록 구조
+    AppStart 주의할점: 최상위 위치 
+
+*/
