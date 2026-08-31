@@ -24,4 +24,7 @@ axios : 비동기 통신을 기본값으로 제공하는 HTTP 기반의 통신 �
         const data = reponse.data   // 실질적으로 담고 있는 데이터 확인
     }
 
+[Spring - Annotation] @xxxxx
+-개발자 직접  new String();
+-실행중에 Class.forName("java.lang.String");
 
