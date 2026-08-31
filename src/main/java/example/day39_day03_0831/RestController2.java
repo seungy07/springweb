@@ -1,13 +1,20 @@
 package example.day39_day03_0831;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -39,6 +46,20 @@ public class RestController2 {
         System.out.println(name); System.out.println(age); System.out.println(count);
         return 7;
     }
+
+    @DeleteMapping("/task8")
+    public int task8( Map<String,Object> map ){ // @RequestParam 생략
+        System.out.println(map);
+        return 8;
+    }
+    // 5. 
+    @DeleteMapping("/task9")
+    public int task9( @ModelAttribute ExamDto examDto ){ // @RequestParam 있으면 오류,  @ModelAttribute 기본값 
+        System.out.println(examDto);
+        return 9;
+    }
+    
+    
 
     
     
