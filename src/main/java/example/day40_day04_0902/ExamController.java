@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 /*
@@ -25,6 +28,12 @@ public class ExamController {
     public List<ExamEntity> findAll(){
         // 서비스 호출
         return examService.findAll();
+    }
+
+    // [2] 저장
+    @PostMapping("/day04/exam")
+    public boolean save(@RequestBody ExamEntity examEntity) {
+        return examService.save(examEntity);
     }
     
 
