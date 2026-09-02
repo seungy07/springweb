@@ -28,26 +28,32 @@ public class P_controller {
 
     // 게시물 전체 조회
     @GetMapping("")
-    public List<P_Entity> findAll(){
-        return p_Service.findAll();
+    public List<P_Entity> testPrint(){
+        return p_Service.testPrint();
     }
+    // 게시물 개별 조회
+    @GetMapping("/{no}")
+    public P_Entity testDetail(@PathVariable(name="no") int no) {
+        return p_Service.testDetail(no);
+    }
+    
 
     // 게시물 등록
     @PostMapping("")
-    public boolean save(@RequestBody P_Entity p_Entity){
-        return p_Service.save(p_Entity);
+    public boolean testWrite(@RequestBody P_Entity p_Entity){
+        return p_Service.testWrite(p_Entity);
     }
     
     // 게시물 삭제
     @DeleteMapping("")
-    public boolean delete(@RequestParam int no){
-        return p_Service.delete(no);
+    public boolean testDelete(@RequestParam int no){
+        return p_Service.testDelete(no);
     }
 
     // 게시물 수정
     @PutMapping("")
-    public boolean update( @RequestBody P_Entity p_Entity) {
-        return p_Service.update(p_Entity);
+    public boolean testUpdate( @RequestBody P_Entity p_Entity) {
+        return p_Service.testUpdate(p_Entity);
     }
     
 }
