@@ -62,10 +62,10 @@ class SampleController4{
 3. @Target          : 해당 어노테이션의 사용처(적용 대상) / ElementType.XXX  <- 사용처 표시
 
 [Lombok]
-1. @NoArgsConstructor   : 기본 생성자 자동 생성
+1. @NoArgsConstructor   : 기본 생성자 자동 생성(매개변수 없는)
 2. @AllArgsConstructor  : 전체 매개변수(필드) 있는 생성자 (자동) 생성
 3. @Getter              : getter 메서드 자동 생성 
-4. @setter              : setter 메서드 자동 생성
+4. @setter              : setter 메서드 자동 생성626
 5. @toString            : toString() 메서드 자동 생성
 6. @RequiredArgsConstructor : final 필드만 포함하는 생성자 자동 생성
 7. @Builder             : 빌더 패턴 방식의 객체 생성 메서드 자동 생성
@@ -88,3 +88,5 @@ class SampleController4{
 10. @ModelAttribute     : 요청 파라미터를 객체(DTO) 필드에 저장
 11. @PathVariable       : url 경로 자체에 포함된 식별자 값 추출 
 12. @RequestBody        : HTTP body(JSON,XML,등 POST/PUT에서 주로 사용) 데이터를 Java 객체로 저장  
+
+day04 _ 0902
