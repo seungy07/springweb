@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -30,11 +35,24 @@ public class ExamController {
         return examService.findAll();
     }
 
-    // [2] 저장
+    // [2] 저장  { "eno":2 , "ename" : "유재석"}
     @PostMapping("/day04/exam")
     public boolean save(@RequestBody ExamEntity examEntity) {
         return examService.save(examEntity);
     }
+
+    // [3] 삭제
+    @DeleteMapping("/day04/exam")
+    public boolean delete(@RequestParam int eno){ // (@RequestParam( name = "no") int no)
+        return examService.delete(eno);
+    }
+
+    // [4] 수정  { "eno":2 , "ename" : "유재석"}
+    @PutMapping("/day04/exam")
+    public boolean update(@RequestBody ExamEntity examEntity){
+        return examService.update(examEntity);
+    }
+    
     
 
 

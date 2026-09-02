@@ -9,3 +9,10 @@ CREATE Table exam(
 INSERT INTO exam(ename) VALUES('유재석');
 INSERT INTO exam(ename) VALUES('강호동');
 INSERT INTO exam(ename) VALUES('신동엽');
+
+CREATE Table practice2(
+    no INT AUTO_INCREMENT PRIMARY KEY,
+    content VARCHAR(255),
+    writer VARCHAR(10)
+);
+INSERT into practice2(content,writer) VALUES("내용1","유재석"),("내용2","강호동")
