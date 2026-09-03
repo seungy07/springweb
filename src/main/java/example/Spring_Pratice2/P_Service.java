@@ -46,8 +46,13 @@ public class P_Service {
 
     // 게시물 삭제
     public boolean testDelete(int no){
-        p_Repository.deleteById(no);
-        return true;  
+        // 1. findById 이용한 삭제 엔티티 확인
+        Optional<P_Entity> optional =p_Repository.findById(no);
+        if(optional.isPresent()){
+            p_Repository.deleteById(no);  // .delete( opional.get() )
+            return true;
+        }
+        return false;
     }
 
     // 게시물 수정
