@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service // @Component 포함
 @RequiredArgsConstructor
 public class P_Service {
     private final P_Repository p_Repository;
@@ -22,7 +22,13 @@ public class P_Service {
     
     // 게시물 개별 조회
     public P_Entity testDetail(int no){
-        List<P_Entity> optional = p_Repository.findAll();
+        // *** Optional 클래스란? 객체 사용시 null 예외가 발생하는 경우 안전하게 메소드 제공
+        // Optional<P_Entity> optional = p_Repository.findById(no);
+        // if( optional.isPresent() ){  // 존재하면 꺼내기 .isEmpty 도 가능
+        //      P_Entity entity = optional.get()
+        //      return entity
+        // } return null;
+        List<P_Entity> optional = p_Repository.findAll(); 
         for(P_Entity entity : optional){
             if (entity.getNo() == no) {
                 return entity;

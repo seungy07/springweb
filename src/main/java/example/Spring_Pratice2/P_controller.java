@@ -1,11 +1,8 @@
 package example.Spring_Pratice2;
 
 import org.springframework.web.bind.annotation.RestController;
-
 import lombok.RequiredArgsConstructor;
-
 import java.util.List;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-
-
-
-@RestController
+@RestController  // @Controller(@Component) + @ResponseBody : 해당 클래스가 HTTP 빈 등록
 @RequiredArgsConstructor
 @RequestMapping("/practice2")
 public class P_controller {
+    // DI : IOC(제어역전) 기반을 스프링이 객체(빈) 등록된 객체(빈) 주입  @Autowired private P_Service p_setvice; 가능
     private final P_Service p_Service;
 
     // 게시물 전체 조회
@@ -33,10 +27,9 @@ public class P_controller {
     }
     // 게시물 개별 조회
     @GetMapping("/{no}")
-    public P_Entity testDetail(@PathVariable(name="no") int no) {
+    public P_Entity testDetail(@PathVariable(name="no") int no) {  // @RequestParam  int no  // /detail
         return p_Service.testDetail(no);
     }
-    
 
     // 게시물 등록
     @PostMapping("")
