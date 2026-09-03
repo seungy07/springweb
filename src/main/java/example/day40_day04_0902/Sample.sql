@@ -16,3 +16,7 @@ CREATE Table practice2(
     writer VARCHAR(10)
 );
 INSERT into practice2(content,writer) VALUES("내용1","유재석"),("내용2","강호동")
+
+DROP DATABASE if EXISTS mydb0903;
+CREATE DATABASE mydb0903;
+use mydb0903;
