@@ -97,3 +97,15 @@ class SampleController4{
 @Id : primary key 지정
 @GeneratedValue( strategy = GenerationType.IDENTITY ): auto_increment 지정
 @Transactional : 여러개 SQL 하나의 (논리)단위로 묶음. *JPA 수정 필수*  setter,getter로 수정하다 보니 여러개를 하나의 기능(수정) 묶음
+
+[ 스프링 MVC ]
+1. @Controller: Spring MVC 컨트롤러 등록 (프론트엔드파일 반환용)
+2. @RestController: RESTful 웹 서비스 컨트롤러 등록 (@Controller + @ResponseBody)
+3. @Service: 비즈니스 로직을 수행하는 서비스 계층 스프링 빈(객체) 등록
+4. @Repository: 데이터베이스 접근을 담당하는 영속성 계층 스프링 빈(객체) 등록 (데이터 접근 예외 변환 지원)
+
+[ 스프링 JPA ]
+1. @Entity: 데이터베이스 테이블과 매핑될 JPA 관리 객체 지정
+2. @Table: 엔티티와 매핑할 데이터베이스 테이블 이름 및 세부 설정 지정
+3. @Id: 데이터베이스 테이블의 기본 키(Primary Key) 지정
+4. @Transactional: 트랜잭션 종료 시 엔티티 변경 감지를 통해 UPDATE 쿼리를 자동 실행 및 커밋 제어

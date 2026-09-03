@@ -15,8 +15,13 @@ import lombok.NoArgsConstructor;
 @Data@AllArgsConstructor@NoArgsConstructor@Builder
 public class P_Entity {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY) // auto_inrement
     private Integer no;
     private String content;
     private String writer;
 }
+/*
+    JPA 영속성이란? 자바의 데이터가 사라지지 않게 데이터베이스에 저장
+        -> 자바 프로그램(휘발성/영구저장불가능)
+        -> 데이터베이스(비휘발성/영구저장가능)
+*/
