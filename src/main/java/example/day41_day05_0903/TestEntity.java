@@ -22,11 +22,11 @@ public class TestEntity extends BaseTime {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer no;
 
-    @Column(name="name", nullable = false , length = 100 , unique = true ) // 제약조건설정 컬러명설정
+    @Column( name = "name", nullable = false , length = 100 , unique = true ) // 제약조건설정 컬러명설정
     private String name;
 
-    @Column( columnDefinition = "varchar(100) not null default '제품설명" ) // columnDefinition로 컬럼 정의를 직접적으로 설정가능
-    private String desc; // 설명
+    @Column( columnDefinition = "varchar(100) not null default '제품설명'" ) // columnDefinition로 컬럼 정의를 직접적으로 설정가능
+    private String descri; // 설명
 
     @Column( insertable = true, updatable = true)
     private Integer price; 

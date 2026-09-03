@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 public class BaseTime {
     // 1. 레코드 생성시점
     @CreatedDate  // 엔티티가 영속화(insert) 될 때의 현재 일시를 자동으로 기록
-    private LocalDateTime createdate;
+    private LocalDateTime createDate;
 
     // 2. 레코드 변경시점
     @LastModifiedDate // 엔티티 데이터가 변경될(update) 떄의 변경 일시를 자동으로 갱신
-    private LocalDateTime upDateTime;
+    private LocalDateTime updateTime;
 }
