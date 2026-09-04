@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 public class WearLogEntity extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer w_no;
-    @Column( name = "착용일", nullable = false, length = 200, unique = false)
-    private String w_context;
+    private Integer wno;
+    @Column( name = "wcontext", nullable = false, length = 200, unique = false)
+    private String wcontext;
 
     // 의류테이블 참조 의류번호
     @ManyToOne
-    @JoinColumn(name = "cl_no")
+    @JoinColumn(name = "clno")
     private ClothesEntity clothesEntity;
     
 }

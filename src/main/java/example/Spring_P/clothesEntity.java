@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,31 +26,32 @@ import lombok.ToString;
 public class ClothesEntity extends BaseTime {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer cl_no;
+    private Integer clno;
 
-    // 참조 FK 회원 테이블 회원번호
+    @Column( name = "clcolor", nullable = false, length = 30, unique = false)
+    private String clcolor;
+    @Column( name = "clname", nullable = true, length = 100, unique = false)
+    private String clname;
+    @Column( name = "retype", nullable = true, length = 30, unique = false)
+    private String retype;
+
+     // 참조 FK 회원 테이블 회원번호
     @ManyToOne
-    @JoinColumn(name = "m_no" ) // 회원테이블( 회원 번호 )
+    @JoinColumn(name = "mno" ) // 회원테이블( 회원 번호 )
     private UserEntity userEntity; // 회원 테이블 엔티티
 
     // 참조 카테고리테이블 카테고리번
     @ManyToOne
-    @JoinColumn(name = "c_no") // 카테고리테이블(카테고리 번호)
+    @JoinColumn(name = "cno") // 카테고리테이블(카테고리 번호)
     private  CategoriesEntity CategoriesEntity;
 
     // 양방향 착용기록 테이블
-    @OneToMany( mappedBy = "clothesEntity")
+    @OneToMany( mappedBy = "clothesEntity" , cascade = CascadeType.REMOVE )
     @ToString.Exclude
     @Builder.Default    
     private List<WearLogEntity> wearLogEntity = new ArrayList<>(); 
 
     
 
-    @Column( name = "색상", nullable = false, length = 30, unique = false)
-    private String cl_color;
-    @Column( name = "의류이름", nullable = true, length = 100, unique = false)
-    private String cl_name;
-    @Column( name = "처리유형", nullable = true, length = 30, unique = false)
-    private String re_type;
     
 }
