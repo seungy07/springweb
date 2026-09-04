@@ -21,7 +21,7 @@ public class P3_Dto {
     private LocalDateTime updateTime;
 
     // entity -> dto
-    public static P3_Dto from(P3_Entity p3_Entity){
+    public static P3_Dto from(P3_Entity p3_Entity){ // static 포함한 이유? 해당 메소드 호출하는 대상의 dto(객체) 인스턴스가 없어서
         return P3_Dto.builder()
             .movieid(p3_Entity.getMovieid())
             .title( p3_Entity.getTitle() )
