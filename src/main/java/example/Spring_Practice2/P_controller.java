@@ -1,4 +1,4 @@
-package example.Spring_Pratice2;
+package example.Spring_Practice2;
 
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;

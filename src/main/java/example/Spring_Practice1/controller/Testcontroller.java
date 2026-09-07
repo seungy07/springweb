@@ -1,4 +1,4 @@
-package example.practice1.controller;
+package example.Spring_Practice1.controller;
 
 import java.util.ArrayList;
 

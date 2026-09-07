@@ -1,6 +1,5 @@
-package example.Spring_Pratice2;
+package example.Spring_Practice2;
 
-import example.Spring_Pratice2.P_Repository;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import example.Spring_Practice2.P_Repository;
 import lombok.RequiredArgsConstructor;
 
 @Service // @Component 포함
