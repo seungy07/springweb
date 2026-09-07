@@ -1,0 +1,2 @@
+DROP DATABASE if EXISTS practice4;
+CREATE DATABASE practice4;
