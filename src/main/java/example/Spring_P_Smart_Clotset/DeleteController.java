@@ -1,4 +1,4 @@
-package example.Spring_P;
+package example.Spring_P_Smart_Clotset;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;

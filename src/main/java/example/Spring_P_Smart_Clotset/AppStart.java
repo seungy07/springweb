@@ -1,4 +1,4 @@
-package example.Spring_P;
+package example.Spring_P_Smart_Clotset;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
