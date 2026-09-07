@@ -1,9 +1,8 @@
-package example.Spring_Practice4.model.entity;
+package example.Spring_Practice5.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,18 +18,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity @Table (name = "student")
+@Entity @Table (name = "board")
 @NoArgsConstructor @AllArgsConstructor @Builder @Data 
-public class StudentEntity extends BaseTime{
+public class BoardEntity extends BaseTime {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer studentId;
+    private Integer boardId;
     @Column 
-    private String studentName;
+    private String author;
+    @Column
+    private String password;
+    @Column
+    private String content;
 
-    @OneToMany( mappedBy = "studentEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude // 순환참조 방지
-    @Builder.Default // 빌터패턴 사용시 초기값 사용
-    private List<EnrollEntity> enrollEntities = new ArrayList<>();
+    @OneToMany (mappedBy = "boardentity" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString .Exclude
+    @Builder.Default
+    private List<CommentEntity> commentEntities = new ArrayList<>();
+
+
     
 }
