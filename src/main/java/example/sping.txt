@@ -109,3 +109,6 @@ class SampleController4{
 2. @Table: 엔티티와 매핑할 데이터베이스 테이블 이름 및 세부 설정 지정
 3. @Id: 데이터베이스 테이블의 기본 키(Primary Key) 지정
 4. @Transactional: 트랜잭션 종료 시 엔티티 변경 감지를 통해 UPDATE 쿼리를 자동 실행 및 커밋 제어
+
+[ 공유 도메인 설정 ] cmd 창 입력
+cloudflared tunnel --url http://localhost:8080
