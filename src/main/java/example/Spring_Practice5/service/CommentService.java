@@ -25,7 +25,7 @@ public class CommentService {
         BoardEntity boardEntity = boardRepository.findById(boardId).orElse(null);
 
         CommentEntity commentEntity = commentDto.toEntity();
-        commentEntity.setBoardentity(boardEntity);
+        commentEntity.setBoardentity(boardEntity); // 댓글에 해당 게시물들 세팅
         CommentEntity saved = commentRepository.save(commentEntity);
         if(saved.getCommentId() >= 1){return  true;}
         return  false;
@@ -43,5 +43,7 @@ public class CommentService {
         }
         return false; // 댓글 없거나 비밀번호 틀린경우
     }
+
+
     
 }
