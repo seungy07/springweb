@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor @Builder @Data 
 public class CommentDto {
+    private Integer boardId;
     private Integer commentId;
     private String author;
     private String password;

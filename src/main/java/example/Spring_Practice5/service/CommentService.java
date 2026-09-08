@@ -5,7 +5,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import example.Spring_Practice5.model.dto.CommentDto;
+import example.Spring_Practice5.model.entity.BoardEntity;
 import example.Spring_Practice5.model.entity.CommentEntity;
+import example.Spring_Practice5.model.repository.BoardRepository;
 import example.Spring_Practice5.model.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -13,10 +15,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor 
 public class CommentService {
     private final CommentRepository commentRepository;
+    private final BoardRepository boardRepository;
 
     // 댓글 저장
     public boolean save(CommentDto commentDto){
+        // DTO 에서 게시글 번호 꺼내기
+        Integer boardId = commentDto.getBoardId();
+        // 해당 게시글 조회
+        BoardEntity boardEntity = boardRepository.findById(boardId).orElse(null);
+
         CommentEntity commentEntity = commentDto.toEntity();
+        commentEntity.setBoardentity(boardEntity);
         CommentEntity saved = commentRepository.save(commentEntity);
         if(saved.getCommentId() >= 1){return  true;}
         return  false;

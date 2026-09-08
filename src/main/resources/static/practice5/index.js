@@ -4,7 +4,7 @@ const openCommentSet = new Set();
 // 1. 게시글 목록 조회 및 피드 렌더링 (GET /api/board)
 async function getPosts() {
     try {
-        const res = await axios.get('https://accurate-premises-tucson-beach.trycloudflare.com/api/board');
+        const res = await axios.get('https://pst-powell-congratulations-cave.trycloudflare.com/api/board');
         const feedContainer = document.querySelector('.feed-container');
         feedContainer.innerHTML = '';
 
@@ -12,9 +12,9 @@ async function getPosts() {
             const card = document.createElement('article');
             card.className = 'post-card';
 
-            const commentList = post.comments || [];
+            const commentList = post.commentDtos || [];
             const initial = (post.author || '?').charAt(0).toUpperCase();
-            const isOpen = openCommentSet.has(post.id);
+            const isOpen = openCommentSet.has(post.boardId);
 
             const commentsHtml = commentList.length > 0
                 ? commentList.map(c => `
@@ -23,7 +23,7 @@ async function getPosts() {
                             <div class="cmt-author">${c.author || ''}</div>
                             <div class="cmt-text">${c.content || ''}</div>
                         </div>
-                        <button type="button" class="btn-del-sm" onclick="removeComment(${post.id}, ${c.id})">삭제</button>
+                        <button type="button" class="btn-del-sm" onclick="removeComment(${post.boardId}, ${c.commentId})">삭제</button>
                     </div>
                 `).join('')
                 : '<div style="text-align: center; color: var(--text-sub); font-size: 13px; padding: 10px 0;">첫 번째 댓글을 남겨보세요.</div>';
@@ -40,15 +40,15 @@ async function getPosts() {
                 </div>
                 <div class="post-content">${post.content || ''}</div>
                 <div class="post-actions">
-                    <button type="button" class="action-chip" onclick="toggleComments(${post.id}, this)">
+                    <button type="button" class="action-chip" onclick="toggleComments(${post.boardId}, this)">
                         💬 ${commentList.length}
                     </button>
-                    <button type="button" class="action-chip delete" onclick="removePost(${post.id})">
+                    <button type="button" class="action-chip delete" onclick="removePost(${post.boardId})">
                         삭제
                     </button>
                 </div>
                 <!-- 하단 댓글 드로어 (인라인 출력) -->
-                <div class="comment-drawer ${isOpen ? 'open' : ''}" id="comments-${post.id}">
+                <div class="comment-drawer ${isOpen ? 'open' : ''}" id="comments-${post.boardId}">
                     <div class="comment-items-box">${commentsHtml}</div>
                     <div class="comment-write-box">
                         <div class="input-row">
@@ -57,7 +57,7 @@ async function getPosts() {
                         </div>
                         <textarea class="input-cmt-content" placeholder="댓글 남기기..." style="min-height: 55px;"></textarea>
                         <div style="text-align: right;">
-                            <button type="button" class="btn-submit" style="padding: 8px 18px; font-size: 13px;" onclick="addComment(${post.id}, this)">댓글 등록</button>
+                            <button type="button" class="btn-submit" style="padding: 8px 18px; font-size: 13px;" onclick="addComment(${post.boardId}, this)">댓글 등록</button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ async function writePost() {
     };
 
     try {
-        await axios.post('https:/accurate-premises-tucson-beach.trycloudflare.com/board', payload);
+        await axios.post('https://pst-powell-congratulations-cave.trycloudflare.com/api/board', payload);
         document.querySelector('.input-post-author').value = '';
         document.querySelector('.input-post-password').value = '';
         document.querySelector('.input-post-content').value = '';
@@ -104,11 +104,11 @@ async function writePost() {
 }
 
 // 4. 글 삭제 (DELETE /api/board?id=1&password=1234 - Query String)
-async function removePost(id) {
+async function removePost(boardId) {
     const password = prompt('비밀번호를 입력하세요:');
     try {
-        await axios.delete('https://accurate-premises-tucson-beach.trycloudflare.com/api/board', {
-            params: { id, password }
+        await axios.delete('https://pst-powell-congratulations-cave.trycloudflare.com/api/board', {
+            params: { boardId, password }
         });
         await getPosts();
     } catch (err) {
@@ -127,7 +127,7 @@ async function addComment(boardId, btn) {
     };
 
     try {
-        await axios.post('https://accurate-premises-tucson-beach.trycloudflare.com/api/board/comments', payload);
+        await axios.post('https://pst-powell-congratulations-cave.trycloudflare.com/api/board/comments', payload);
         openCommentSet.add(boardId);
         await getPosts();
     } catch (err) {
@@ -139,7 +139,7 @@ async function addComment(boardId, btn) {
 async function removeComment(boardId, commentId) {
     const password = prompt('비밀번호를 입력하세요:');
     try {
-        await axios.delete('https://accurate-premises-tucson-beach.trycloudflare.com/api/board/comments', {
+        await axios.delete('https://pst-powell-congratulations-cave.trycloudflare.com/api/board/comments', {
             params: { commentId, password }
         });
         openCommentSet.add(boardId);
