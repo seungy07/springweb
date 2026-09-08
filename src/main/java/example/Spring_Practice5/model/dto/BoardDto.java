@@ -15,14 +15,14 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor @Builder @Data 
 public class BoardDto {
-    private Integer boardId;
+    private Integer boardId; 
     private String author;
     private String password;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    @Builder.Default
+    @Builder.Default  // 게시글 마다 댓글 목록
     private List<CommentDto> commentDtos = new ArrayList<>();
 
     // toEntity
