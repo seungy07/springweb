@@ -91,5 +91,5 @@ printScore( 50, printSucces , ( message ) => { console.log("실패" +message)} )
 const backLoad = async ( ) => {
     // (2) axios 앞에 await
     const resopnse = await axios();
- }
- backLoad();
+}
+backLoad(); 
