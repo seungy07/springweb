@@ -1,5 +1,6 @@
 package example.totalpractice.model.dto;
 
+import example.totalpractice.model.entity.ProductEntity;
 import example.totalpractice.model.entity.ReviewEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +16,9 @@ public class ReviewDto {
     private Integer bno;
 
     // toEntity
-    public ReviewEntity toEntity(){
+    public ReviewEntity toEntity(ProductEntity productEntity){
         return ReviewEntity.builder()
+                .productEntity(productEntity)
                 .reviewer(this.reviewer)
                 .content(this.content)
                 .rating(this.rating)

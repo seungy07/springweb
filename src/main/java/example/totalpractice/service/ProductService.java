@@ -25,14 +25,17 @@ public class ProductService {
     // 수정
     @Transactional 
     public boolean update(ProductDto productDto){
-        
         Optional<ProductEntity> optional = productRepoistory.findById( productDto.getBno() );
         if(optional.isPresent()){
             ProductEntity pEntity = optional.get();
             pEntity.setName(productDto.getName());
             pEntity.setPrice(productDto.getPrice());
             
-            return true;
+            CategoryEntity cEntity = categoryRepository.findById(productDto.getCno()).orElse(null);
+            if(cEntity != null ){
+                pEntity.setCategoryEntity(cEntity);
+                return true;
+            }
         }
         return false;
     }
