@@ -20,7 +20,7 @@ public class ReviewService {
     private ProductRepoistory productRepoistory;
 
      // 1. 제품별 리뷰 전체 조회
-    public List<ReviewDto>reviewPrint(int bno){
+    public List<ReviewDto> reviewPrint(Integer bno){
         // 해당 제품의 리뷰 Entity 여러개 조회
         List<ReviewEntity>reviewEntities = reviewRepoistory.findByProductEntity_Bno(bno);
 
@@ -29,14 +29,7 @@ public class ReviewService {
 
         // Entity -> DTO
         for(ReviewEntity reviewEntity : reviewEntities){
-            ReviewDto reviewDto =  ReviewDto.builder()
-                    .rno(reviewEntity.getRno())
-                    .bno(reviewEntity.getProductEntity().getBno())
-                    .reviewer(reviewEntity.getReviewer())
-                    .content(reviewEntity.getContent())
-                    .rating(reviewEntity.getRating())
-                    .build();
-
+            ReviewDto reviewDto =  ReviewDto.from(reviewEntity);
                 reviewDtos.add(reviewDto);
         }
         return reviewDtos;

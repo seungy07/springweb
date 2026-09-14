@@ -17,14 +17,14 @@ import example.totalpractice.service.ReviewService;
 
 @CrossOrigin (value = "http://localhost:5173")
 @RestController 
-@RequestMapping ("/api/review")
+@RequestMapping ("/api/reviews")
 public class ReviewController {
     @Autowired 
     private ReviewService reviewService;
 
     // 1. 제품별 리뷰 전체조회
     @GetMapping("")
-    public List<ReviewDto> reviewPrint(@RequestParam int bno){
+    public List<ReviewDto> reviewPrint(@RequestParam(name = "bno") Integer bno){
         return reviewService.reviewPrint(bno);
     }
      
@@ -36,7 +36,7 @@ public class ReviewController {
 
     // 3. 리뷰삭제
     @DeleteMapping 
-    public boolean reviewDelete(@RequestParam int rno){
+    public boolean reviewDelete(@RequestParam(name = "rno") Integer rno){
         return reviewService.reviewDelete(rno);
     }
     

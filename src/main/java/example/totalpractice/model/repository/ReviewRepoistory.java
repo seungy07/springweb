@@ -9,6 +9,6 @@ import example.totalpractice.model.entity.ReviewEntity;
 
 @Repository 
 public interface  ReviewRepoistory extends JpaRepository<ReviewEntity, Integer> {
-    List<ReviewEntity> findByProductEntity_Bno(int bno);
+    List<ReviewEntity> findByProductEntity_Bno(Integer bno);
     
 }
