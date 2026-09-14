@@ -10,13 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import example.totalpractice.model.dto.ProductDto;
 import example.totalpractice.model.dto.ReviewDto;
+import example.totalpractice.model.entity.CategoryEntity;
 import example.totalpractice.model.entity.ProductEntity;
+import example.totalpractice.model.repository.CategoryRepository;
 import example.totalpractice.model.repository.ProductRepoistory;
 
 @Service 
 public class ProductService {
     @Autowired 
     private ProductRepoistory productRepoistory;
+    @Autowired 
+    private CategoryRepository categoryRepository;
 
     // 수정
     @Transactional 
@@ -45,12 +49,16 @@ public class ProductService {
 
     // 등록
     public boolean 제품등록(ProductDto productDto){
-        ProductEntity productEntity = productDto.toEntity();
-        ProductEntity savedEntity = productRepoistory.save(productEntity);
-        if (savedEntity.getBno()>=1) {
-            return true;
+        CategoryEntity categoryEntity = categoryRepository.findById(productDto.getCno()).orElse(null);
+        if(categoryEntity != null){
+            ProductEntity productEntity = productDto.toEntity(categoryEntity);
+
+            ProductEntity savedEntity = productRepoistory.save(productEntity);
+            if (savedEntity.getBno()>=1) {
+                return true;
+            }
         }
-        return false;
+        return  false;
     }
 
     // 조회

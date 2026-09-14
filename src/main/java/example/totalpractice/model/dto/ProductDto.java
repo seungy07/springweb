@@ -3,6 +3,7 @@ package example.totalpractice.model.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.totalpractice.model.entity.CategoryEntity;
 import example.totalpractice.model.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,11 @@ public class ProductDto {
     private List<ReviewDto> reviewDtos = new ArrayList<>();
 
     // toEntity
-    public  ProductEntity toEntity(){
+    public  ProductEntity toEntity(CategoryEntity categoryEntity){
         return ProductEntity.builder()
                 .name(this.name)
                 .price(this.price)
+                .categoryEntity(categoryEntity)
                 .build();
     }
 
