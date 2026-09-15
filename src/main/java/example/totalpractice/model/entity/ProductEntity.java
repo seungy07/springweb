@@ -27,7 +27,7 @@ public class ProductEntity {
     private String name;
     private Integer price;
 
-    @ManyToOne 
+    @ManyToOne // N : 1 
     @JoinColumn (name = "cno")
     private CategoryEntity categoryEntity;
 
