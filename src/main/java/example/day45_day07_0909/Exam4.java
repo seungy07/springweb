@@ -36,15 +36,15 @@ public class Exam4 {
         
         // 4. names 리스트내 문자열을 가각 대입하여 Student 객체 만드세요.
             // 전통
-            List<Student> list1 = new ArrayList<>();
+            List<Student1> list1 = new ArrayList<>();
             for(int i=0;i<=names.size()-1;i++){
-                Student student = new Student( names.get(i));
+                Student1 student = new Student1( names.get(i));
                 list1.add(student);
             }
             // 스트림 API
-            List<Student> list2 = names.stream().map((name)->{return new Student(name);}).toList();
+            List<Student1> list2 = names.stream().map((name)->{return new Student1(name);}).toList();
             // 메소드 참조
-            List<Student> list3 = names.stream().map( Student::new ).toList();
+            List<Student1> list3 = names.stream().map( Student1::new ).toList();
             
             /*  유형
                 1. 클래스명::static메소드명
@@ -59,8 +59,8 @@ public class Exam4 {
             */
     }
 }
-class Student{
+class Student1{
     private String name;
-    public  Student( String name ){ this.name = name;}
+    public  Student1( String name ){ this.name = name;}
 
 }
