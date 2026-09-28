@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS react_day07;
+CREATE DATABASE react_day07;
