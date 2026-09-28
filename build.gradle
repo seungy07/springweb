@@ -34,6 +34,8 @@ dependencies {  // https://start.spring.io 의존청 추가 홈페이지
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.2'
 	//  CSV 파싱
 	implementation 'com.opencsv:opencsv:5.12.0'
+	// 8.비크립트 단방향 암호화 	
+	implementation 'org.springframework.security:spring-security-crypto'
 
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
