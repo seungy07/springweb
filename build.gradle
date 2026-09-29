@@ -36,6 +36,10 @@ dependencies {  // https://start.spring.io 의존청 추가 홈페이지
 	implementation 'com.opencsv:opencsv:5.12.0'
 	// 8.비크립트 단방향 암호화 	
 	implementation 'org.springframework.security:spring-security-crypto'
+	// 9. 토큰 사용을 위한 암호화 JWT
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
