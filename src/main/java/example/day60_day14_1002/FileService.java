@@ -1,10 +1,15 @@
 package example.day60_day14_1002;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service 
 public class FileService {
@@ -32,14 +37,60 @@ public class FileService {
                                                             .replaceAll("_", "-"); // uuid-짱구, // 기존 문자를 새로운 문자로 치환
 
         // 5. 업로드 처리 , .transferTo( 업로드할file 객체 );  예외 처리 발생
-        try{multipartFile.transferTo( new File(uploadPath+fileName) );} catch(Exception e){System.out.println(e);}
-        return null;
+        try{
+            multipartFile.transferTo( new File(uploadPath+fileName) );
+            return fileName;
+        } catch(Exception e){
+            System.out.println(e);
+            return null;
+         }
+        
     }
 
 
     // [3] 다운로드 함수
+    // c드라이브-FileInput --> JAVA -ServletOut --> (servlet이용) 브라우저
+    public void fileDownload(String fileName, HttpServletResponse response){
+        // 1. 다운로드할 파일명과 HTTP 응답 객체 받기
+        // 2. 다운로드 할 파일명과 업로드 경로 조합
+        String downloadPath = uploadPath + fileName; // 업로드 경로 + 파일명
+        // 3. 만약에 파일이 없으면 
+        File file = new File( downloadPath ); 
+        if( !file.exists() ){return ;}
+        
+        // 4. 있으면 파일 읽어오기, FileInputStream , + 예외처리  스캐너를 제외한 입출력은 예외처리가 뜸
+        try{
+            FileInputStream fin = new FileInputStream(downloadPath);
+            long fileSize = file.length(); // 파일의 용량을 확인  long 바이트용량
+            byte[] bytes = new byte[ (int)fileSize ];  // 파일 용량만큼 바이트 배열 생성
+            fin.read( bytes ); // 파일 입력객체가 입력은 바이트들을 바이트배열에 저장
+            fin.close(); // 스트림(이동)간 버퍼 안전하게 직접 닫기  // 남겨두면 쓰레기값이 계속 쌓이기 때문
+
+        // 6. 다운로드 형식 지정 : 브라우저 마다 상이 ***
+        // 실제 파일명으로 찾기 , UUID_짱구.jpg --> 짱구.jpg
+        // .split("기준문자"); , 문자열내 특정 기준문자로 분해
+            String realFileName = fileName.split("_")[1]; // 언더바 기준으로 쪼개서 2번째 인덱스 값 가져오기
+            // HTTP 헤더에 다운로드 형식 지정,  한글 지원 X . URLEncoder.encode
+            response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(realFileName, "UTF-8"));
+
+        // 5. 서버로 가져온 파일(바이트들) HTTP 응답 하기 out
+            ServletOutputStream out = response.getOutputStream(); // 현재 다운로드요청한 서블릿의 출력 스트림 가져오기 // 요청한 서블릿 객체에 응답
+            out.write( bytes ); // 서블릿출력스트림 객체로 앞전에 읽어온 파일 바이트 배열 내보내기
+            out.close();
+        }catch(Exception e){System.out.println(e);}
+    }
 
 
     // [4] 파일 삭제 함수
+    public boolean fileDelete(String fileName){
+        // 1. 삭제할 파일명과 경로 조합
+        String deleteFilePath = uploadPath+fileName;
+        // 2. 만약에 경로에 파일이 존재하면 
+        File file = new File(deleteFilePath);
+        if(file.exists()){
+            file.delete(); // 해당 경로에 파일 삭제함수
+            return true;
+        }else{return false;}
+    }
     
 }
